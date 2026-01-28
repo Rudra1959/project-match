@@ -2,13 +2,9 @@
 
 import { signIn } from "next-auth/react";
 import { motion } from "framer-motion";
-import { Github, Mail, Sparkles } from "lucide-react";
-import { useState } from "react";
+import { Github, Sparkles } from "lucide-react";
 
 export default function SignInPage() {
-    const [email, setEmail] = useState("");
-    const [isLoading, setIsLoading] = useState(false);
-
     return (
         <div className="min-h-screen flex items-center justify-center relative overflow-hidden bg-black">
             <div className="bg-gradient" />
@@ -34,51 +30,13 @@ export default function SignInPage() {
                     <p className="text-gray-400 font-medium">Connect. Build. Innovate.</p>
                 </div>
 
-                <div className="space-y-4">
-                    <button
-                        onClick={() => signIn("github", { callbackUrl: "/" })}
-                        className="w-full py-4 bg-white text-black rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-gray-200 transition-all active:scale-95 shadow-xl"
-                    >
-                        <Github className="w-6 h-6" />
-                        Continue with GitHub
-                    </button>
-
-                    <div className="relative my-8">
-                        <div className="absolute inset-0 flex items-center">
-                            <div className="w-full border-t border-white/10"></div>
-                        </div>
-                        <div className="relative flex justify-center text-xs uppercase">
-                            <span className="bg-black px-4 text-gray-500 font-bold tracking-widest">Or Magic Link</span>
-                        </div>
-                    </div>
-
-                    <form
-                        onSubmit={async (e) => {
-                            e.preventDefault();
-                            setIsLoading(true);
-                            await signIn("nodemailer", { email, callbackUrl: "/" });
-                            setIsLoading(false);
-                        }}
-                        className="space-y-4"
-                    >
-                        <input
-                            type="email"
-                            placeholder="name@university.edu"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            required
-                            className="w-full px-6 py-4 glass-morphism rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all text-white placeholder:text-gray-600"
-                        />
-                        <button
-                            type="submit"
-                            disabled={isLoading}
-                            className="w-full py-4 bg-primary/20 hover:bg-primary/30 text-primary-foreground border border-primary/30 rounded-2xl font-bold flex items-center justify-center gap-3 transition-all active:scale-95 disabled:opacity-50"
-                        >
-                            <Mail className="w-5 h-5" />
-                            {isLoading ? "Sending..." : "Send Magic Link"}
-                        </button>
-                    </form>
-                </div>
+                <button
+                    onClick={() => signIn("github", { callbackUrl: "/" })}
+                    className="w-full py-4 bg-white text-black rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-gray-200 transition-all active:scale-95 shadow-xl"
+                >
+                    <Github className="w-6 h-6" />
+                    Continue with GitHub
+                </button>
 
                 <p className="mt-10 text-center text-sm text-gray-500">
                     By continuing, you agree to our <span className="text-gray-400 underline cursor-pointer">Terms</span>
