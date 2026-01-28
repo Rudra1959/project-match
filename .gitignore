@@ -52,3 +52,13 @@ lint_output*
 Thumbs.db
 ehthumbs.db
 Desktop.ini
+
+# --------------------
+# Lint / Tool outputs
+# --------------------
+lint_*.txt
+lint_*.json
+*.log
+
+# ESLint cache
+.eslintcache
