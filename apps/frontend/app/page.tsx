@@ -52,9 +52,11 @@ export default async function Home() {
   });
 
   // Fetch projects the user hasn't swiped on yet
-  const swipedProjectIds = await prisma.swipe
-    .findMany({ where: { swiperId: userId }, select: { projectId: true } })
-    .then((swipes) => swipes.map((s) => s.projectId));
+  const swipedProjects = await prisma.swipe.findMany({
+    where: { swiperId: userId },
+    select: { projectId: true },
+  });
+  const swipedProjectIds = swipedProjects.map((s) => s.projectId);
 
   const projects = await prisma.project.findMany({
     where: {
@@ -66,9 +68,11 @@ export default async function Home() {
   });
 
   // Fetch potential teammates (users the user hasn't swiped on yet)
-  const swipedUserIds = await prisma.userSwipe
-    .findMany({ where: { swiperId: userId }, select: { swipedId: true } })
-    .then((swipes) => swipes.map((s) => s.swipedId));
+  const swipedUsers = await prisma.userSwipe.findMany({
+    where: { swiperId: userId },
+    select: { swipedId: true },
+  });
+  const swipedUserIds = swipedUsers.map((s) => s.swipedId);
 
   const teammates = await prisma.user.findMany({
     where: {

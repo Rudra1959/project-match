@@ -9,6 +9,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@clerk/backend": "^2.30.1",
     "@clerk/nextjs": "^6.37.2",
     "@repo/database": "workspace:*",
     "cloudinary": "^2.5.1",
